@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+process.on("unhandledRejection", (reason, p) => {
+  throw reason;
+});
 
 const http = require("http");
 const axios = require("axios");
