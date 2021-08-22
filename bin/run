@@ -15,13 +15,15 @@ const service = require("../server/service")(config);
 const server = http.createServer(service);
 
 // Important - a service should not have a fixed port but should randomly choose one
-server.listen(0);
+server.listen(process.env.PORT);
 
 server.on("listening", () => {
   // to register service with service registry running on port 3000
   const registerService = () =>
     axios.put(
-      `https://mighty-meadow-87665.herokuapp.com/register/${config.name}/${config.version}/${process.env.PORT}`
+      `https://mighty-meadow-87665.herokuapp.com/register/${config.name}/${
+        config.version
+      }/${server.address().port}`
     );
 
   registerService();
@@ -29,7 +31,9 @@ server.on("listening", () => {
   // to deregister if the service runs into any exception
   const unregisterService = () =>
     axios.delete(
-      `https://mighty-meadow-87665.herokuapp.com/register/${config.name}/${config.version}/${process.env.PORT}`
+      `https://mighty-meadow-87665.herokuapp.com/register/${config.name}/${
+        config.version
+      }/${server.address().port}`
     );
 
   const interval = setInterval(registerService, 20000);
