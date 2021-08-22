@@ -9,67 +9,95 @@ class SpeakersService {
   }
 
   async getNames() {
-    const data = await this.getData();
-    return data.map((speaker) => ({
-      name: speaker.name,
-      shortname: speaker.shortname,
-    }));
+    try {
+      const data = await this.getData();
+      return data.map((speaker) => ({
+        name: speaker.name,
+        shortname: speaker.shortname,
+      }));
+    } catch (error) {
+      return error;
+    }
   }
 
   async getListShort() {
-    const data = await this.getData();
-    return data.map((speaker) => ({
-      name: speaker.name,
-      shortname: speaker.shortname,
-      title: speaker.title,
-    }));
+    try {
+      const data = await this.getData();
+      return data.map((speaker) => ({
+        name: speaker.name,
+        shortname: speaker.shortname,
+        title: speaker.title,
+      }));
+    } catch (error) {
+      return error;
+    }
   }
 
   async getList() {
-    const data = await this.getData();
-    return data.map((speaker) => ({
-      name: speaker.name,
-      shortname: speaker.shortname,
-      title: speaker.title,
-      summary: speaker.summary,
-    }));
+    try {
+      const data = await this.getData();
+      return data.map((speaker) => ({
+        name: speaker.name,
+        shortname: speaker.shortname,
+        title: speaker.title,
+        summary: speaker.summary,
+      }));
+    } catch (error) {
+      return error;
+    }
   }
 
   async getAllArtwork() {
-    const data = await this.getData();
-    const artwork = data.reduce((acc, elm) => {
-      if (elm.artwork) {
-        // eslint-disable-next-line no-param-reassign
-        acc = [...acc, ...elm.artwork];
-      }
-      return acc;
-    }, []);
-    return artwork;
+    try {
+      const data = await this.getData();
+      const artwork = data.reduce((acc, elm) => {
+        if (elm.artwork) {
+          // eslint-disable-next-line no-param-reassign
+          acc = [...acc, ...elm.artwork];
+        }
+        return acc;
+      }, []);
+      return artwork;
+    } catch (error) {
+      return error;
+    }
   }
 
   async getSpeaker(shortname) {
-    const data = await this.getData();
-    const speaker = data.find((current) => current.shortname === shortname);
-    if (!speaker) return null;
-    return {
-      title: speaker.title,
-      name: speaker.name,
-      shortname: speaker.shortname,
-      description: speaker.description,
-    };
+    try {
+      const data = await this.getData();
+      const speaker = data.find((current) => current.shortname === shortname);
+      if (!speaker) return null;
+      return {
+        title: speaker.title,
+        name: speaker.name,
+        shortname: speaker.shortname,
+        description: speaker.description,
+      };
+    } catch (error) {
+      return error;
+    }
   }
 
   async getArtworkForSpeaker(shortname) {
-    const data = await this.getData();
-    const speaker = data.find((current) => current.shortname === shortname);
-    if (!speaker || !speaker.artwork) return null;
-    return speaker.artwork;
+    try {
+      const data = await this.getData();
+      const speaker = data.find((current) => current.shortname === shortname);
+      if (!speaker || !speaker.artwork) return null;
+      return speaker.artwork;
+    } catch (error) {
+      return error;
+    }
   }
 
   async getData() {
-    const data = await readFile(this.datafile, "utf8");
-    if (!data) return [];
-    return JSON.parse(data).speakers;
+    try {
+      const data = await readFile(this.datafile, "utf8");
+      if (!data) return [];
+      return JSON.parse(data).speakers;
+    } catch (error) {
+      return error;
+    }
   }
 }
 
