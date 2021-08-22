@@ -36,38 +36,38 @@ server.on("listening", () => {
   const interval = setInterval(registerService, 20000);
 
   const cleanup = async () => {
+    clearInterval(interval);
     try {
-      clearInterval(interval);
       await unregisterService();
     } catch (error) {
-      return error;
+      console.log(error);
     }
   };
 
   process.on("uncaughtException", async () => {
     try {
       await cleanup();
-      process.exit(0);
     } catch (error) {
-      return error;
+      console.log(error);
     }
+    process.exit(0);
   });
   process.on("SIGINT", async () => {
     try {
       await cleanup();
-      process.exit(0);
     } catch (error) {
-      return error;
+      console.log(error);
     }
+    process.exit(0);
   });
   // On termination
   process.on("SIGTERM", async () => {
     try {
       await cleanup();
-      process.exit(0);
     } catch (error) {
-      return error;
+      console.log(error);
     }
+    process.exit(0);
   });
 
   log.info(
