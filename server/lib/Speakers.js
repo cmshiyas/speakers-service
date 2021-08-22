@@ -16,7 +16,7 @@ class SpeakersService {
         shortname: speaker.shortname,
       }));
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 
@@ -29,7 +29,7 @@ class SpeakersService {
         title: speaker.title,
       }));
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 
@@ -43,7 +43,7 @@ class SpeakersService {
         summary: speaker.summary,
       }));
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 
@@ -59,7 +59,7 @@ class SpeakersService {
       }, []);
       return artwork;
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 
@@ -75,7 +75,7 @@ class SpeakersService {
         description: speaker.description,
       };
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 
@@ -86,7 +86,7 @@ class SpeakersService {
       if (!speaker || !speaker.artwork) return null;
       return speaker.artwork;
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 
@@ -96,7 +96,7 @@ class SpeakersService {
       if (!data) return [];
       return JSON.parse(data).speakers;
     } catch (error) {
-      return error;
+      console.log(error);
     }
   }
 }

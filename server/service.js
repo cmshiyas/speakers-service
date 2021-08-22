@@ -20,7 +20,7 @@ module.exports = (config) => {
     try {
       return res.json(await speakers.getList());
     } catch (error) {
-      return next(error);
+      console.log(error);
     }
   });
 
@@ -28,7 +28,7 @@ module.exports = (config) => {
     try {
       return res.json(await speakers.getListShort());
     } catch (error) {
-      return next(error);
+      console.log(error);
     }
   });
 
@@ -36,7 +36,7 @@ module.exports = (config) => {
     try {
       return res.json(await speakers.getNames());
     } catch (error) {
-      return next(error);
+      console.log(error);
     }
   });
 
@@ -44,7 +44,7 @@ module.exports = (config) => {
     try {
       return res.json(await speakers.getSpeaker(req.params.shortname));
     } catch (error) {
-      return next(error);
+      console.log(error);
     }
   });
 
@@ -54,7 +54,7 @@ module.exports = (config) => {
         await speakers.getArtworkForSpeaker(req.params.shortname)
       );
     } catch (error) {
-      return next(error);
+      console.log(error);
     }
   });
 
@@ -62,7 +62,7 @@ module.exports = (config) => {
     try {
       return res.json(await speakers.getAllArtwork());
     } catch (error) {
-      return next(error);
+      console.log(error);
     }
   });
 
