@@ -21,9 +21,9 @@ server.on("listening", () => {
   // to register service with service registry running on port 3000
   const registerService = () =>
     axios.put(
-      `http://localhost:3000/register/${config.name}/${config.version}/${
-        server.address().port
-      }`
+      `https://mighty-meadow-87665.herokuapp.com/register/${config.name}/${
+        config.version
+      }/${server.address().port}`
     );
 
   registerService();
@@ -31,9 +31,9 @@ server.on("listening", () => {
   // to deregister if the service runs into any exception
   const unregisterService = () =>
     axios.delete(
-      `http://localhost:3000/register/${config.name}/${config.version}/${
-        server.address().port
-      }`
+      `https://mighty-meadow-87665.herokuapp.com/register/${config.name}/${
+        config.version
+      }/${server.address().port}`
     );
 
   const interval = setInterval(registerService, 20000);
